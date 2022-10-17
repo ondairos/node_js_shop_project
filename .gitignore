@@ -1,6 +1,7 @@
 # Dependency directories
 node_modules/
 
+util/database.js
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/
 
@@ -33,6 +34,3 @@ out
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
-
-bfg-1.14.0
-bfg-1.14.0.jarZone.Identifier
