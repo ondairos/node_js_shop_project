@@ -52,12 +52,10 @@ class User {
       .find({ _id: { $in: productIds } })
       .toArray()
       .then(products => {
-        return products.map(p => {
-          return {
-            ...p,
-            quantity: this.cart.items.find(i => {
+        return products.map(p => {   //new value which is an object where I still have all the old product properties
+          return {...p, quantity: this.cart.items.find(i => { //add a new quantity property and to get the right quantity for that given product, I reach out to my cart items to find the product with the id that matches the id of product in the database
               return i.productId.toString() === p._id.toString();
-            }).quantity
+            }).quantity //end extract the quantity
           };
         });
       });
