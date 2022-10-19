@@ -1,21 +1,21 @@
-<<<<<<< HEAD
 const mongodb = require('mongodb');
 const getDb = require('../util/database').getDb;
 
 class Product {
-  constructor(title, price, description, imageUrl, id) {
+  constructor(title, price, description, imageUrl, id, userId) {
     this.title = title;
     this.price = price;
     this.description = description;
     this.imageUrl = imageUrl;
-    this._id =id ?  new mongodb.ObjectId(id) : null; //_id --> empty id object fix
+    this._id = id ? new mongodb.ObjectId(id) : null;
+    this.userId = userId;
   }
 
   save() {
     const db = getDb();
     let dbOp;
     if (this._id) {
-      //update the product with mongo db
+      // Update the product
       dbOp = db
         .collection('products')
         .updateOne({ _id: this._id }, { $set: this });
@@ -26,7 +26,9 @@ class Product {
       .then(result => {
         console.log(result);
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   static fetchAll() {
@@ -36,12 +38,15 @@ class Product {
       .find()
       .toArray()
       .then(products => {
+        console.log(products);
         return products;
       })
-      .catch(err => console.log(err)); //find mongo method
+      .catch(err => {
+        console.log(err);
+      });
   }
 
-  static findByPk(prodId) {
+  static findById(prodId) {
     const db = getDb();
     return db
       .collection('products')
@@ -51,28 +56,23 @@ class Product {
         console.log(product);
         return product;
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+      });
   }
-=======
-const Sequelize = require('sequelize');
 
-const sequelize = require('../util/database');
->>>>>>> parent of 84c6916... added mongo database connection
-
-  static deleteByPk(prodId) {
+  static deleteById(prodId) {
     const db = getDb();
-    //mongodb deleteOne()
     return db
       .collection('products')
       .deleteOne({ _id: new mongodb.ObjectId(prodId) })
       .then(result => {
-        console.log('Deleted product');
+        console.log('Deleted');
       })
       .catch(err => {
         console.log(err);
-      })
+      });
   }
-
 }
 
 module.exports = Product;

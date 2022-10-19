@@ -10,11 +10,11 @@ router.get('/', shopController.getIndex);
 
 router.get('/products', shopController.getProducts);
 
-router.get('/products/:productId', shopController.getProduct);//express allows us to use dynamic segment, use specific routes first!
+router.get('/products/:productId', shopController.getProduct);
 
-// router.get('/cart', shopController.getCart);
+router.get('/cart', shopController.getCart);
 
-// router.post('/cart', shopController.postCart);
+router.post('/cart', shopController.postCart);
 
 // router.post('/cart-delete-item', shopController.postCartDeleteProduct);
 
@@ -23,6 +23,3 @@ router.get('/products/:productId', shopController.getProduct);//express allows u
 // router.get('/orders', shopController.getOrders);
 
 module.exports = router;
-
-
-
