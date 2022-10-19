@@ -46,7 +46,7 @@ class Product {
       });
   }
 
-  static findById(prodId) {
+  static findByPk(prodId) {
     const db = getDb();
     return db
       .collection('products')
@@ -61,7 +61,7 @@ class Product {
       });
   }
 
-  static deleteById(prodId) {
+  static deleteByPk(prodId) {
     const db = getDb();
     return db
       .collection('products')
