@@ -32,9 +32,7 @@ class User {
         quantity: newQuantity
       });
     }
-    const updatedCart = {
-      items: updatedCartItems
-    };
+    const updatedCart = { items: updatedCartItems };
     const db = getDb();
     return db
       .collection('users')
