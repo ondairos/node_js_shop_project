@@ -2,10 +2,10 @@ const Sequelize = require('sequelize');
 
 const sequelize = require('../util/database');
 
-const OrderItem  = sequelize.define('orderItem', {
+const OrderItem = sequelize.define('orderItem', {
   id: {
     type: Sequelize.INTEGER,
-    autoIncrement:true,
+    autoIncrement: true,
     allowNull: false,
     primaryKey: true
   },
