@@ -53,12 +53,26 @@ class User {
       .toArray()
       .then(products => {
         return products.map(p => {   //new value which is an object where I still have all the old product properties
-          return {...p, quantity: this.cart.items.find(i => { //add a new quantity property and to get the right quantity for that given product, I reach out to my cart items to find the product with the id that matches the id of product in the database
+          return {
+            ...p, quantity: this.cart.items.find(i => { //add a new quantity property and to get the right quantity for that given product, I reach out to my cart items to find the product with the id that matches the id of product in the database
               return i.productId.toString() === p._id.toString();
             }).quantity //end extract the quantity
           };
         });
       });
+  }
+
+  deleteItemFromCart(productId) {
+    const updatedCartItems = this.cart.items.filter(item => {
+      return item.productId.toString() !== productId; //returns false
+    }); //new array with all elements making it through filter()
+    const db = getDb();
+    return db
+      .collection('users')
+      .updateOne(
+        { _id: new ObjectId(this._id) },
+        { $set: { cart: {items : updatedCartItems} } }
+      );
   }
 
   static findByPk(userId) {
