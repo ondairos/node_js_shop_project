@@ -1,13 +1,13 @@
 ## Node JS Shop Project**
 Node JS Shop Project made with Javascript, NodeJS, ExpressJS, SQL-Sequelize.
 
-
+<br />
 <details>
   <summary>1. Node Basics</summary>
   How the web works, Creating a Node Server, Node Lifecycle & event loop, Requests, Responses & Responses headers, Routing/redirecting requests, Request body parsing, Event Driven code execution, Blocking/Non-blocking code, Node Modules system.
 </details>
 
-
+<br />
 <details>
   <summary>2. Node MVC Software Design Pattern</summary>
 
@@ -24,7 +24,7 @@ Node JS Shop Project made with Javascript, NodeJS, ExpressJS, SQL-Sequelize.
   **2.6 Dynamic Routes & Advanced Models**: Extracting dynamic params, Using IDs on paths, Passing data on requests, Query Params, HTTP Methods.
 </details>
 
-
+<br />
 <details>
   <summary>3. Node SQL & NoSQL</summary>
 
