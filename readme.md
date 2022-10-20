@@ -31,5 +31,9 @@ Node JS Shop Project made with Javascript, NodeJS, ExpressJS, SQL-Sequelize.
   **3.1 SQL**: Choosing databases, SQL vs NoSQL, SQL for retrieving data & fetching products
 
   **3.2 Sequelize**: Synching JS Definitions to the database, inserting data, Model creation, One-To-Many relationships, Managing users and models.
+
+  **3.3 NoSQL & MongoDB**: Relations in NoSQL, Database connections, MongoDB Compass, Storing users, Relational data.
+
+  **3.4 Mongoose**: MongoDB Server connection with Mongoose, Schemas, Saving data though Mongoose, Fetching Relations, Clearing data.
   
 </details>
