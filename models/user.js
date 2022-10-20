@@ -20,6 +20,46 @@ const userSchema = new Schema({
   }
 });
 
+userSchema.methods.addToCart = function (product) {
+  const cartProductIndex = this.cart.items.findIndex(cp => {
+    return cp.productId.toString() === product._id.toString();
+  });
+  let newQuantity = 1;
+  const updatedCartItems = [...this.cart.items];
+
+  if (cartProductIndex >= 0) {
+    newQuantity = this.cart.items[cartProductIndex].quantity + 1;
+    updatedCartItems[cartProductIndex].quantity = newQuantity;
+  } else {
+    updatedCartItems.push({
+      productId: product._id,
+      quantity: newQuantity
+    });
+  }
+  const updatedCart = { items: updatedCartItems };
+  this.cart = updatedCart;
+  return this.save(); //mongoose
+};
+
+// userSchema.methods.getCart = function () {
+//   const productIds = this.cart.items.map(i => {
+//     return i.productId;
+//   });
+//   return db
+//     .collection('products')
+//     .find({ _id: { $in: productIds } })
+//     .toArray()
+//     .then(products => {
+//       return products.map(p => {   //new value which is an object where I still have all the old product properties
+//         return {
+//           ...p, quantity: this.cart.items.find(i => { //add a new quantity property and to get the right quantity for that given product, I reach out to my cart items to find the product with the id that matches the id of product in the database
+//             return i.productId.toString() === p._id.toString();
+//           }).quantity //end extract the quantity
+//         };
+//       });
+//     });
+// };
+
 module.exports = mongoose.model('User', userSchema);
 
 // const mongodb = require('mongodb');
