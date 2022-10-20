@@ -5,6 +5,8 @@ util/database.js
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/
 
+helper.js
+
 # Optional npm cache directory
 .npm
 
