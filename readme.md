@@ -1,15 +1,15 @@
 ## Node JS Shop Project**
-Node JS Shop Project made with Javascript, NodeJS, ExpressJS, SQL-Sequelize.
+Node JS Shop Project made with Javascript, NodeJS, ExpressJS, SQL-Sequelize/MongoDB-Mongoose.
 
 <br />
 <details>
-  <summary>1. Node Basics</summary>
+  <summary>## 1. Node Basics</summary>
   How the web works, Creating a Node Server, Node Lifecycle & event loop, Requests, Responses & Responses headers, Routing/redirecting requests, Request body parsing, Event Driven code execution, Blocking/Non-blocking code, Node Modules system.
 </details>
 
 <br />
 <details>
-  <summary>2. Node MVC Software Design Pattern</summary>
+  <summary>## 2. Node MVC Software Design Pattern</summary>
 
   **2.1 Improved Development Workflow and Debugging:** NPM Scripts, 3rd party packages vs Global features vs Core modules, Nodemon, Error Types, Syntax & Runtime & Logical errors.
 
@@ -26,7 +26,7 @@ Node JS Shop Project made with Javascript, NodeJS, ExpressJS, SQL-Sequelize.
 
 <br />
 <details>
-  <summary>3. Node SQL & NoSQL</summary>
+  <summary>## 3. Node SQL & NoSQL</summary>
 
   **3.1 SQL**: Choosing databases, SQL vs NoSQL, SQL for retrieving data & fetching products
 
