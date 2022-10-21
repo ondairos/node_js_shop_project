@@ -37,3 +37,11 @@ Node JS Shop Project made with Javascript, NodeJS, ExpressJS, SQL-Sequelize/Mong
   **3.4 Mongoose**: MongoDB Server connection with Mongoose, Schemas, Saving data though Mongoose, Fetching Relations, Clearing data.
   
 </details>
+<br />
+<details>
+  <summary>4. Session and Cookies</summary>
+
+  **4.1 Cookies**: Request Driven Login Solutions, Setting/manipulating/configuring/deleting cookies.
+
+  **4.2 Sessions**: Session Middlewares, Using MongoDB to store sessions, Connecting Sessions and Cookies.
+</details>
