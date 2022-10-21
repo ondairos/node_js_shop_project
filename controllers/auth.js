@@ -14,7 +14,17 @@ exports.postLogin = (req, res, next) => {
         .then(user => {
             req.session.isLoggedIn = true;
             req.session.user = user; //share across requests
-            res.redirect('/');
+            req.session.save(err => {  //redirect after the session is created in the mongodb and not before
+                console.log(err);
+                res.redirect('/');
+            });
         })
         .catch(err => console.log(err));
+};
+
+exports.postLogout = (req, res, next) => {
+    req.session.destroy((err) => {
+        console.log(err);
+        res.redirect('/');
+    }); //method of the package mongodb-session
 };

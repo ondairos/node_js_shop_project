@@ -41,6 +41,20 @@ app.use(
   })
 );  //session middleware
 
+app.use((req, res, next) => {
+  if (!req.session.user) {
+    return next();
+  }
+  User.findById(req.session.user._id)
+    .then(user => {
+      req.user = user; //mongoose model for user
+      next();
+    })
+    .catch(err => {
+      console.log(err);
+    })
+});
+
 app.use('/admin', adminRoutes); //web app routes for admin
 app.use(shopRoutes); //shop routes for users
 app.use(authRoutes); //authentication routes
