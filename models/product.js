@@ -21,13 +21,12 @@ const productSchema = new Schema({
   },
   userId: {
     type: Schema.Types.ObjectId,
-    ref: 'User', //use the model you want to relate.
-    required: true  
+    ref: 'User',
+    required: true
   }
 });
 
 module.exports = mongoose.model('Product', productSchema);
-
 
 // const mongodb = require('mongodb');
 // const getDb = require('../util/database').getDb;
@@ -77,7 +76,7 @@ module.exports = mongoose.model('Product', productSchema);
 //       });
 //   }
 
-//   static findByPk(prodId) {
+//   static findById(prodId) {
 //     const db = getDb();
 //     return db
 //       .collection('products')
@@ -92,7 +91,7 @@ module.exports = mongoose.model('Product', productSchema);
 //       });
 //   }
 
-//   static deleteByPk(prodId) {
+//   static deleteById(prodId) {
 //     const db = getDb();
 //     return db
 //       .collection('products')

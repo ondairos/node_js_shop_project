@@ -12,15 +12,20 @@ const userSchema = new Schema({
     required: true
   },
   cart: {
-    items: [{
-      productId: { type: Schema.Types.ObjectId, ref: 'Product', required: true }, //reference to Product mongoose
-      quantity: { type: Number, required: true }
-    }
+    items: [
+      {
+        productId: {
+          type: Schema.Types.ObjectId,
+          ref: 'Product',
+          required: true
+        },
+        quantity: { type: Number, required: true }
+      }
     ]
   }
 });
 
-userSchema.methods.addToCart = function (product) {
+userSchema.methods.addToCart = function(product) {
   const cartProductIndex = this.cart.items.findIndex(cp => {
     return cp.productId.toString() === product._id.toString();
   });
@@ -36,12 +41,14 @@ userSchema.methods.addToCart = function (product) {
       quantity: newQuantity
     });
   }
-  const updatedCart = { items: updatedCartItems };
+  const updatedCart = {
+    items: updatedCartItems
+  };
   this.cart = updatedCart;
-  return this.save(); //mongoose
+  return this.save();
 };
 
-userSchema.methods.removeFromCart = function (productId) {
+userSchema.methods.removeFromCart = function(productId) {
   const updatedCartItems = this.cart.items.filter(item => {
     return item.productId.toString() !== productId.toString();
   });
@@ -49,7 +56,7 @@ userSchema.methods.removeFromCart = function (productId) {
   return this.save();
 };
 
-userSchema.methods.clearCart = function () {
+userSchema.methods.clearCart = function() {
   this.cart = { items: [] };
   return this.save();
 };
@@ -90,7 +97,9 @@ module.exports = mongoose.model('User', userSchema);
 //         quantity: newQuantity
 //       });
 //     }
-//     const updatedCart = { items: updatedCartItems };
+//     const updatedCart = {
+//       items: updatedCartItems
+//     };
 //     const db = getDb();
 //     return db
 //       .collection('users')
@@ -110,11 +119,12 @@ module.exports = mongoose.model('User', userSchema);
 //       .find({ _id: { $in: productIds } })
 //       .toArray()
 //       .then(products => {
-//         return products.map(p => {   //new value which is an object where I still have all the old product properties
+//         return products.map(p => {
 //           return {
-//             ...p, quantity: this.cart.items.find(i => { //add a new quantity property and to get the right quantity for that given product, I reach out to my cart items to find the product with the id that matches the id of product in the database
+//             ...p,
+//             quantity: this.cart.items.find(i => {
 //               return i.productId.toString() === p._id.toString();
-//             }).quantity //end extract the quantity
+//             }).quantity
 //           };
 //         });
 //       });
@@ -122,8 +132,8 @@ module.exports = mongoose.model('User', userSchema);
 
 //   deleteItemFromCart(productId) {
 //     const updatedCartItems = this.cart.items.filter(item => {
-//       return item.productId.toString() !== productId; //returns false
-//     }); //new array with all elements making it through filter()
+//       return item.productId.toString() !== productId.toString();
+//     });
 //     const db = getDb();
 //     return db
 //       .collection('users')
@@ -134,7 +144,6 @@ module.exports = mongoose.model('User', userSchema);
 //   }
 
 //   addOrder() {
-//     //add orders to my user or vice versa
 //     const db = getDb();
 //     return this.getCart()
 //       .then(products => {
@@ -164,10 +173,9 @@ module.exports = mongoose.model('User', userSchema);
 //       .collection('orders')
 //       .find({ 'user._id': new ObjectId(this._id) })
 //       .toArray();
-
 //   }
 
-//   static findByPk(userId) {
+//   static findById(userId) {
 //     const db = getDb();
 //     return db
 //       .collection('users')
