@@ -20,6 +20,7 @@ app.set('views', 'views');
 
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
+const authRoutes = require('./routes/auth');
 
 app.use(bodyParser.urlencoded({ extended: false }));   //bodyparser config
 app.use(express.static(path.join(__dirname, 'public'))); // path config with express
@@ -35,6 +36,7 @@ app.use((req, res, next) => {
 
 app.use('/admin', adminRoutes); //web app routes for admin
 app.use(shopRoutes); //shop routes for users
+app.use(authRoutes); //authentication routes
 
 app.use(errorController.get404); //use of 404 controller
 
