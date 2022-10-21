@@ -1,47 +1,51 @@
 const path = require('path');
+const helper = require('./helper'); //helper js file
 
-const express = require('express');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
+//env variables for secure mongoose connect
+const usernamedb = process.env.DB_USERNAME;
+const passdb = process.env.DB_PASSWORD;
 
-const errorController = require('./controllers/error');
-const User = require('./models/user');
+//package includes
+const express = require('express');  //framework
+const bodyParser = require('body-parser'); //parser
+const mongoose = require('mongoose'); //database ODM object document mapping library
 
-const app = express();
+const errorController = require('./controllers/error'); //404 controller
+const User = require('./models/user'); //user model
+ 
+const app = express();  //main express init
 
-app.set('view engine', 'ejs');
+app.set('view engine', 'ejs');  //EJS as the template engine
 app.set('views', 'views');
 
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.urlencoded({ extended: false }));   //bodyparser config
+app.use(express.static(path.join(__dirname, 'public'))); // path config with express
 
 app.use((req, res, next) => {
-  User.findById('5bab316ce0a7c75f783cb8a8')
+  User.findById('635151936812fda3e75f8764')
     .then(user => {
-      req.user = user;
+      req.user = user; //mongoose model 
       next();
     })
     .catch(err => console.log(err));
 });
 
-app.use('/admin', adminRoutes);
-app.use(shopRoutes);
+app.use('/admin', adminRoutes); //web app routes for admin
+app.use(shopRoutes); //shop routes for users
 
-app.use(errorController.get404);
+app.use(errorController.get404); //use of 404 controller
 
-mongoose
-  .connect(
-    'mongodb+srv://maximilian:9u4biljMQc4jjqbe@cluster0-ntrwp.mongodb.net/shop?retryWrites=true'
-  )
+//mongoose init and app init
+mongoose.connect(`mongodb+srv://${usernamedb}:${passdb}@cluster0.ga01wzx.mongodb.net/shop?retryWrites=true&w=majority`)
   .then(result => {
     User.findOne().then(user => {
       if (!user) {
         const user = new User({
-          name: 'Max',
-          email: 'max@test.com',
+          name: 'John',
+          email: 'test@test.com',
           cart: {
             items: []
           }
@@ -53,4 +57,4 @@ mongoose
   })
   .catch(err => {
     console.log(err);
-  });
+  })
