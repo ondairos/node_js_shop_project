@@ -11,6 +11,7 @@ const bodyParser = require('body-parser'); //parser
 const mongoose = require('mongoose'); //database ODM object document mapping library
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);  //Session with MongoDB
+const flash = require('connect-flash'); //flash error messages through session
 
 const errorController = require('./controllers/error'); //404 controller
 const User = require('./models/user'); //user model
@@ -41,6 +42,8 @@ app.use(
   })
 );  //session middleware
 
+app.use(flash()); //flash middleware for error messages
+
 app.use((req, res, next) => {
   if (!req.session.user) {
     return next();
@@ -54,6 +57,12 @@ app.use((req, res, next) => {
       console.log(err);
     })
 });
+
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.session.isLoggedIn;
+  next();
+});
+
 
 app.use('/admin', adminRoutes); //web app routes for admin
 app.use(shopRoutes); //shop routes for users
