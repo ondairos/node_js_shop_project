@@ -3,13 +3,13 @@ Node JS Shop Project made with Javascript, NodeJS, ExpressJS, SQL-Sequelize/Mong
 
 <br />
 <details>
-  <summary>## 1. Node Basics</summary>
+  <summary> ## 1. Node Basics</summary>
   How the web works, Creating a Node Server, Node Lifecycle & event loop, Requests, Responses & Responses headers, Routing/redirecting requests, Request body parsing, Event Driven code execution, Blocking/Non-blocking code, Node Modules system.
 </details>
 
 <br />
 <details>
-  <summary>## 2. Node MVC Software Design Pattern</summary>
+  <summary> ## 2. Node MVC Software Design Pattern</summary>
 
   **2.1 Improved Development Workflow and Debugging:** NPM Scripts, 3rd party packages vs Global features vs Core modules, Nodemon, Error Types, Syntax & Runtime & Logical errors.
 
@@ -26,7 +26,7 @@ Node JS Shop Project made with Javascript, NodeJS, ExpressJS, SQL-Sequelize/Mong
 
 <br />
 <details>
-  <summary>## 3. Node SQL & NoSQL</summary>
+  <summary> ## 3. Node SQL & NoSQL</summary>
 
   **3.1 SQL**: Choosing databases, SQL vs NoSQL, SQL for retrieving data & fetching products
 
@@ -37,11 +37,21 @@ Node JS Shop Project made with Javascript, NodeJS, ExpressJS, SQL-Sequelize/Mong
   **3.4 Mongoose**: MongoDB Server connection with Mongoose, Schemas, Saving data though Mongoose, Fetching Relations, Clearing data.
   
 </details>
+
 <br />
 <details>
-  <summary>4. Session and Cookies</summary>
+  <summary> ## 4. Session and Cookies</summary>
 
   **4.1 Cookies**: Request Driven Login Solutions, Setting/manipulating/configuring/deleting cookies.
 
   **4.2 Sessions**: Session Middlewares, Using MongoDB to store sessions, Connecting Sessions and Cookies.
+</details>
+
+<br />
+<details>
+  <summary>5. Authentication</summary>
+
+  **5.1 Basic Authentication**: Authentication Flow, Encrypting passwords, Sign up/Sign in, Route protection, Providing user feedback, Flash messages.
+
+  **5.2 Advanced Authentiction**: Resetting passwords, Token logic, Updating passwords, Protection to Post Actions, Limiting editing to posts that user created.
 </details>
