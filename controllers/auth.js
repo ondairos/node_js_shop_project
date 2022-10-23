@@ -4,6 +4,7 @@ const sendgridTransport = require('nodemailer-sendgrid-transport');
 const helper = require('../helper'); //helper js file
 
 const sendgridApiEnv = process.env.SNDGRID_API;
+const personalEmail = process.env.PRSNL_EMAIL;
 
 const User = require('../models/user');
 
@@ -97,7 +98,7 @@ exports.postSignup = (req, res, next) => {
         res.redirect('/login'); //user created
         return transporter.sendMail({
           to: email,
-          from: 'shop-js@node-js-project.com',
+          from: personalEmail,
           subject: 'SIGNUP successfull!',
           html: '<h1>You have successfully signed up!!! (-.-) </h1>'
         });
