@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs'); //encrypt passwords
 const nodemailer = require('nodemailer');
 const sendgridTransport = require('nodemailer-sendgrid-transport');
 const helper = require('../helper'); //helper js file
+const { validationResult } = require('express-validator/check');
 
 const sendgridApiEnv = process.env.SNDGRID_API;
 const personalEmail = process.env.PRSNL_EMAIL;
@@ -78,40 +79,39 @@ exports.postLogin = (req, res, next) => {
 exports.postSignup = (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
-  const confirmPassword = req.body.confirmPassword;
 
-  User.findOne({ email: email }).then(userDoc => {
-    if (userDoc) {
-      req.flash('error', 'Email exists already. Please choose another one.');
-      return res.redirect('/signup'); //user exists
-    }
-    return bcrypt
-      .hash(password, 12)
-      .then(hashedPassword => {
-        const user = new User({
-          email: email,
-          password: hashedPassword,
-          cart: { items: [] }
-        });
-        return user.save();
-      })
-      .then(result => {
-        res.redirect('/login'); //user created
-        return transporter.sendMail({
-          to: email,
-          from: personalEmail,
-          subject: 'SIGNUP successfull!',
-          html: '<h1>You have successfully signed up!!! (-.-) </h1>'
-        });
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    console.log(errors.array());
+    return res.status(422).render('auth/signup', {
+      path: '/signup',
+      pageTitle: 'Signup',
+      errorMessage: errors.array()[0].msg
+    });
+  }
 
-      }).catch(err => {
-        console.log(err);
-      })
-  })
+  bcrypt
+    .hash(password, 12)
+    .then(hashedPassword => {
+      const user = new User({
+        email: email,
+        password: hashedPassword,
+        cart: { items: [] }
+      });
+      return user.save();
+    })
+    .then(result => {
+      res.redirect('/login');
+      // return transporter.sendMail({
+      //   to: email,
+      //   from: personalEmail,
+      //   subject: 'Signup succeeded!',
+      //   html: '<h1>You successfully signed up!</h1>'
+      // });
+    })
     .catch(err => {
       console.log(err);
     });
-
 };
 
 exports.postLogout = (req, res, next) => {
