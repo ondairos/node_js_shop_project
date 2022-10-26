@@ -65,7 +65,7 @@ exports.postEditProduct = (req, res, next) => {
   Product.findById(prodId)
     .then(product => {
       //check if product user id to the requested user
-      if (product.userId !== req.user._id) {
+      if (product.userId.toString() !== req.user._id) {  //type equality 
         return res.redirect('/');
       }
       product.title = updatedTitle;
