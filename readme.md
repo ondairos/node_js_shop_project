@@ -49,9 +49,34 @@ Node JS Shop Project made with Javascript, NodeJS, ExpressJS, SQL-Sequelize/Mong
 
 <br />
 <details>
-  <summary>5. Authentication</summary>
+  <summary> ## 5. Authentication</summary>
 
   **5.1 Basic Authentication**: Authentication Flow, Encrypting passwords, Sign up/Sign in, Route protection, Providing user feedback, Flash messages.
 
   **5.2 Advanced Authentiction**: Resetting passwords, Token logic, Updating passwords, Protection to Post Actions, Limiting editing to posts that user created.
+</details>
+<br />
+<details>
+  <summary> ## 6. Emails</summary>
+  
+  **6.1 Nodemailer**: Sending emails using Nodemailer and SendGrid, Understanding limitations for large scale apps
+</details>
+
+<details>
+  <summary> ## 7. Validation</summary>
+
+  Basic and custom validation, Validating Errors and Login, Checking for field equality, Async validation, Conditional CSS classes, Sanitazing Data, Validating product manipulation (adding/editing).
+
+</details>
+
+<details>
+  <summary> ## 8. Error Handling</summary>
+  
+  Type of errors, Throwing errors, Returning error pages,Express.js Error handling middleware, Status Codes
+</details>
+
+<details>
+  <summary> ## 9. File Upload & Download</summary>
+
+  File Picker, Handling multipart form data, Handling file uploads with multer, Adjusting filename & filepaths, Filtering files by mimetype, Storing file data in the database, Serving images statically, Downloading files with Authentication, Setting file Type headers, Restricting file access, Streaming Data vs Preloading Data, PDFKit for pdf generation, Deleting files.
 </details>
