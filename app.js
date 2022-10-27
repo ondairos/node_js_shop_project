@@ -57,8 +57,8 @@ app.use((req, res, next) => {
       next();
     })
     .catch(err => {
-      throw new Error(err);
-    })
+      next(new Error(err));
+    });
 });
 
 app.use((req, res, next) => {
@@ -71,12 +71,17 @@ app.use('/admin', adminRoutes); //web app routes for admin
 app.use(shopRoutes); //shop routes for users
 app.use(authRoutes); //authentication routes
 
-app.get('/500', errorController.get500); //500 error
+// app.get('/500', errorController.get500); //500 error
 
 app.use(errorController.get404); //use of 404 controller
 
-app.use((error, req, res ,next ) => { //central error handler
-  res.redirect('/500');
+app.use((error, req, res, next) => { //central error handler
+  // res.redirect('/500');
+  res.status(500).render('500', {
+    pageTitle: 'Error',
+    path: '/500',
+    isAuthenticated: req.session.isLoggedIn
+  });
 });
 
 
