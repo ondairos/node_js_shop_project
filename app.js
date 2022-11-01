@@ -1,4 +1,9 @@
 const path = require('path');
+const helper = require('./helper'); //helper js file
+
+//env variables for secure mongoose connect
+const usernamedb = process.env.DB_USERNAME;
+const passdb = process.env.DB_PASSWORD;
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -12,8 +17,7 @@ const multer = require('multer');
 const errorController = require('./controllers/error');
 const User = require('./models/user');
 
-const MONGODB_URI =
-  'mongodb+srv://ondairos:G291GATEFcsaKSPv@cluster0.ga01wzx.mongodb.net/shop?retryWrites=true&w=majority';
+const MONGODB_URI = `mongodb+srv://${usernamedb}:${passdb}@cluster0.ga01wzx.mongodb.net/shop?retryWrites=true&w=majority`;
 
 const app = express();
 const store = new MongoDBStore({

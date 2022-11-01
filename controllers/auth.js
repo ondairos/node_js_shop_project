@@ -5,13 +5,16 @@ const nodemailer = require('nodemailer');
 const sendgridTransport = require('nodemailer-sendgrid-transport');
 const { validationResult } = require('express-validator/check');
 
+const sendgridApiEnv = process.env.SNDGRID_API;
+const personalEmail = process.env.PRSNL_EMAIL;
+
 const User = require('../models/user');
 
 const transporter = nodemailer.createTransport(
   sendgridTransport({
     auth: {
       api_key:
-        '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'
+        sendgridApiEnv
     }
   })
 );
@@ -209,7 +212,7 @@ exports.postReset = (req, res, next) => {
         res.redirect('/');
         transporter.sendMail({
           to: req.body.email,
-          from: 'shop@node-complete.com',
+          from: personalEmail,
           subject: 'Password reset',
           html: `
             <p>You requested a password reset</p>
