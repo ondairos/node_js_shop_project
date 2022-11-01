@@ -31,7 +31,7 @@ const fileStorage = multer.diskStorage({
     cb(null, 'images');
   },
   filename: (req, file, cb) => {
-    cb(null, new Date().getMilliseconds().toString() + '-' + file.originalname); //storing files with unique name multer
+    cb(null, Date.now() + '-' + file.originalname); //storing files with unique name multer
   }
 });
 
@@ -53,6 +53,8 @@ const authRoutes = require('./routes/auth');
 app.use(bodyParser.urlencoded({ extended: false }));   //bodyparser config
 app.use(multer({ storage: fileStorage, fileFilter: fileFilter }).single('image')); //multer usage for file upload donwload
 app.use(express.static(path.join(__dirname, 'public'))); // path config with express
+app.use('/images', express.static(path.join(__dirname, 'images'))); // images static middleware
+
 app.use(
   session({
     secret: 'my secret',

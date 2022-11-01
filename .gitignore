@@ -1,5 +1,6 @@
 # Dependency directories
 node_modules/
+images/
 
 util/database.js
 # Snowpack dependency directory (https://snowpack.dev/)
