@@ -8,7 +8,7 @@ exports.getProducts = (req, res, next) => {
       res.render('shop/product-list', {
         prods: products,
         pageTitle: 'All Products',
-        path: '/products' 
+        path: '/products'
       });
     })
     .catch(err => {
@@ -136,7 +136,6 @@ exports.getOrders = (req, res, next) => {
         path: '/orders',
         pageTitle: 'Your Orders',
         orders: orders
-        
       });
     })
     .catch(err => {
