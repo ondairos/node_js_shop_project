@@ -15,7 +15,9 @@ router.get('/add-product', isAuth, adminController.getAddProduct);
 router.get('/products', isAuth, adminController.getProducts);
 
 // /admin/add-product => POST
-router.post('/add-product', [
+router.post(
+  '/add-product',
+  [
     body('title')
         .isString()
         .isLength({ min: 3 })
@@ -25,7 +27,9 @@ router.post('/add-product', [
         .isLength({ min: 5, max: 400 })
         .trim()
 ],
-    isAuth, adminController.postAddProduct);
+  isAuth,
+  adminController.postAddProduct
+);
 
 router.get('/edit-product/:productId', isAuth, adminController.getEditProduct);
 

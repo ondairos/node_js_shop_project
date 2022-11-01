@@ -1,5 +1,8 @@
+const mongoose = require('mongoose');
+
+const { validationResult } = require('express-validator/check');
+
 const Product = require('../models/product');
-const { validationResult } = require('express-validator/check')
 
 exports.getAddProduct = (req, res, next) => {
   res.render('admin/edit-product', {
@@ -9,7 +12,6 @@ exports.getAddProduct = (req, res, next) => {
     hasError: false,
     errorMessage: null,
     validationErrors: []
-
   });
 };
 
@@ -21,7 +23,7 @@ exports.postAddProduct = (req, res, next) => {
   if (!image) {
     return res.status(422).render('admin/edit-product', {
       pageTitle: 'Add Product',
-      path: 'admin/add-product',
+      path: '/admin/add-product',
       editing: false,
       hasError: true,
       product: {
@@ -29,16 +31,17 @@ exports.postAddProduct = (req, res, next) => {
         price: price,
         description: description
       },
-      errorMessage: 'The file you uploaded is not an image.',
+      errorMessage: 'Attached file is not an image.',
       validationErrors: []
     });
   }
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
+    console.log(errors.array());
     return res.status(422).render('admin/edit-product', {
       pageTitle: 'Add Product',
-      path: 'admin/add-product',
+      path: '/admin/add-product',
       editing: false,
       hasError: true,
       product: {
